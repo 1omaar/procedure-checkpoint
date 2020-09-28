@@ -42,3 +42,8 @@ BEGIN
         write("les deux vecteurs ne sont pas orthogonaux");
     END_IF
 END
+
+
+FOR i FROM min TO max STEP step  DO
+  testing
+END_FOR
