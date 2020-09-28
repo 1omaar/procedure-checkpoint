@@ -1,49 +1,70 @@
-PROCEDURE DOT_Product(VAR v1,v2: ARRAY_OF FLOAT[2],cos(v1,v2):FLOAT)
+//procedure DOT_Product of first algorithm
+PROCEDURE DOT_Product(n: INTEGER,VAR v1,v2: ARRAY_OF FLOAT[50], VAR ps:FLOAT)
 VAR
-    i:INTEGER;
-    ps,V1,V2:FLOAT;
-    
+    i:INTEGER; 
 BEGIN
     i:=0;
-    FOR i FROM 0 TO 1 STEP i++  DO
+    FOR i FROM 0 TO n-1 STEP i++  DO
         read(v1[i]);
+        read(v2[i]);
     END_FOR
     i:=0;
-    FOR i FROM 0 TO 1 STEP i++  DO
-       read(v2[i]);
-    END_FOR
- FOR i FROM 0 TO 1 STEP i++  DO
-        WHILE (i<2 AND v1[i]<>0 AND v1[i+1]<>0) DO
-           V1:=V1+v1[i]*v1[i];
-        END_WHILE
-    END_FOR
-    V1:=V1**0.5
-    FOR i FROM 0 TO 1 STEP i++  DO
-        WHILE (i<2 AND v2[i]<>0 AND v2[i+1]<>0) DO
-           V2:=V2+v2[i]*v2[i];
-        END_WHILE
-    END_FOR
-    V2:=V2**0.5;
-IF (V1<0 OR V2<0 OR cos(v1,v2)<0) THEN
-    ps:=V1*V2*cos(v1,v2)*-1;
-ELSE
-    ps:=ps:=V1*V2*cos(v1,v2);
-END_IF
+ FOR i FROM 0 TO n-1 STEP i++  DO
+    ps:=ps+v1[i]*v2[i];
     write(ps);
 END
+//algorithm produit scalaire
 ALGORITHM orthogonality
 VAR
-    v1,v2 : ARRAY_OF FLOAT[2];
-    cos(v1,v2):FLOAT;
+    v1,v2 : ARRAY_OF FLOAT[50];
+    ps:FLOAT:
+    n:INTEGER
 BEGIN
-    IF (DOT_Product(VAR v1,v2: ARRAY_OF FLOAT[2],cos(v1,v2):FLOAT)=0) THEN
+    IF (n%2=0) THEN
+        read(n);
+    ELSE
+        writh("enter n pair of vectors");
+    END_IF
+    write("please enter n pair of vector");
+    read(n);
+    IF (DOT_Product(v1,v2,n,ps):=0) THEN
         write("les deux vecteurs sont orthogonaux");
     ELSE
         write("les deux vecteurs ne sont pas orthogonaux");
     END_IF
 END
-
-
-FOR i FROM min TO max STEP step  DO
-  testing
-END_FOR
+//function DOT_product of second algorithm
+FUNCTION DOT_Product(n:INTEGER, VAR v1,v2:ARRAY_OF FLOAT[50]) : FLOAT
+VAR
+    i:INTEGER; 
+BEGIN
+    i:=0;
+    FOR i FROM 0 TO n-1 STEP i++  DO
+        read(v1[i]);
+         read(v2[i]);
+    END_FOR
+    i:=0;
+ FOR i FROM 0 TO n-1 STEP i++  DO
+    ps:=ps+v1[i]*v2[i];
+    RETURN ps ;
+END
+//algorithm produit scalaire
+ALGORITHM orthogonality
+VAR
+    v1,v2 : ARRAY_OF FLOAT[50];
+    ps:FLOAT:
+    n:INTEGER
+BEGIN
+    IF (n%2=0) THEN
+        read(n);
+    ELSE
+        writh("enter n pair of vectors");
+    END_IF
+    write("please enter n pair of vector");
+    read(n);
+    IF (ps:=DOT_Product(v1,v2,n):=0) THEN
+        write("les deux vecteurs sont orthogonaux");
+    ELSE
+        write("les deux vecteurs ne sont pas orthogonaux");
+    END_IF
+END
